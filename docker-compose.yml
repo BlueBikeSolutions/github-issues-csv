@@ -4,7 +4,7 @@ services:
   gh2csv:
     build: .
     environment:
-      - RUNTIME_GITHUB_USER=${ENV_GITHUB_USER}
-      - RUNTIME_GITHUB_PASSWORD=${ENV_GITHUB_PASSWORD}
-      - RUNTIME_GITHUB_REPO=${ENV_GITHUB_REPO}
+      - RUNTIME_GITHUB_USER=${ghuser}
+      - RUNTIME_GITHUB_PASSWORD=${ghpassword}
+      - RUNTIME_GITHUB_REPO=${repo}
     command: python main.py -u ${RUNTIME_GITHUB_USER} -p ${RUNTIME_GITHUB_PASSWORD} -r ${RUNTIME_GITHUB_REPO} --no-quick
