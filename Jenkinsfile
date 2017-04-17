@@ -7,6 +7,6 @@ node('master') {
             echo "\u2600 workspace=${workspace}"
     stage 'Running Issues Extractor Script'
 		withCredentials([usernamePassword(credentialsId: 'ghsignin', passwordVariable: 'ghpass', usernameVariable: 'ghuser')]) {
-	    	sh 'docker run --name gh2csv_script -v ${PWD}/issues:/opt/issues gh2csv python main.py -u {ghuser} -p {ghpass} -r {ghrepo} --no-quick >> /opt/issues/issues_{env.BUILD_NUMBER}.csv'
+	    	sh 'docker run -H $DOCKER_HOST_HOST --name gh2csv_script -v ${PWD}/issues:/opt/issues gh2csv python main.py -u {ghuser} -p {ghpass} -r {ghrepo} --no-quick >> /opt/issues/issues_{env.BUILD_NUMBER}.csv'
 		}
 }
