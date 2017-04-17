@@ -8,6 +8,6 @@ node('master') {
     stage 'Running Issues Extractor Script'
 		withCredentials([usernamePassword(credentialsId: 'ghsignin', passwordVariable: 'ghpass', usernameVariable: 'ghuser')]) {
 		sh 'docker-compose -H $DOCKER_HOST_HOST down --remove-orphans -v'
-		sh './run.sh'
+		sh 'docker-compose -H $DOCKER_HOST_HOST up -d'
 		}
 }
