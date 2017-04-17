@@ -5,6 +5,6 @@ services:
     build: .
     environment:
       - RUNTIME_GITHUB_USER=${ghuser}
-      - RUNTIME_GITHUB_PASSWORD=${ghpassword}
-      - RUNTIME_GITHUB_REPO=${repo}
+      - RUNTIME_GITHUB_PASSWORD=${ghpass}
+      - RUNTIME_GITHUB_REPO=${ghrepo}
     command: python main.py -u ${RUNTIME_GITHUB_USER} -p ${RUNTIME_GITHUB_PASSWORD} -r ${RUNTIME_GITHUB_REPO} --no-quick
