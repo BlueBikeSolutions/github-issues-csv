@@ -13,6 +13,6 @@ node('master') {
         sh 'sed -i "s#GITHUB_REPO=.*#GITHUB_REPO=${ghrepo}#g" .env'
         sh 'cat .env'
 		sh 'docker-compose -H $DOCKER_HOST_HOST down --remove-orphans -v'
-		sh 'docker-compose -H $DOCKER_HOST_HOST up -it'
+		sh 'docker-compose -H $DOCKER_HOST_HOST up'
 		}
 }
