@@ -10,7 +10,7 @@ node('master') {
         sh 'cp .env.example .env'
         sh 'sed -i "s/GITHUB_USER=.*/GITHUB_USER=${ghuser}/" .env'
         sh 'sed -i "s/GITHUB_PASSWORD=.*/GITHUB_PASSWORD=${ghpass}/" .env'
-        sh 'sed -i "s#GITHUB_REPO=.*#GITHUB_REPO=BlueBikeSolutions/rc-lse-prototype#g" .env'
+        sh 'sed -i "s#GITHUB_REPO=.*#GITHUB_REPO=${ghrepo}#g" .env'
         sh 'cat .env'
 		sh 'docker-compose -H $DOCKER_HOST_HOST down --remove-orphans -v'
 		sh 'docker-compose -H $DOCKER_HOST_HOST up -d'
