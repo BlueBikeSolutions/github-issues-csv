@@ -17,5 +17,6 @@ node('master') {
 		sh 'docker -H $DOCKER_HOST_HOST cp master_gh2csv_1:/opt/github-issues-csv/issues.csv .'
 	stage 'Archiving issues.csv'
 		archiveArtifacts artifacts: 'issues.csv'
-		}
+	stage 'Emailing Issues File'
+		emailext attachmentsPattern: '**/issues.csv', body: 'Attached is the start-of-day issues file', subject: 'lse project issues export', to: 'redcrosslse@bluebike.com.au'
 }
