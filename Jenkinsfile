@@ -19,4 +19,5 @@ node('master') {
 		archiveArtifacts artifacts: 'issues.csv'
 	stage 'Emailing Issues File'
 		emailext attachmentsPattern: '**/issues.csv', body: 'Attached is the start-of-day issues file', subject: 'lse project issues export', to: 'redcrosslse@bluebike.com.au'
+		}
 }
