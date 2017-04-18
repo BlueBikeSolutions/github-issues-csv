@@ -3,4 +3,4 @@ version: '2'
 services:
   gh2csv:
     build: .
-    command: ["/bin/sh", "-c", "python /opt/github-issues-csv/main.py -u ${GITHUB_USER} -p ${GITHUB_PASSWORD} -r ${GITHUB_REPO} --no-quick | tee -a /opt/github-issues-csv/issues.csv"]
+    command: ["/bin/sh", "-c", "python /opt/github-issues-csv/main.py -u ${GITHUB_USER} -p ${GITHUB_PASSWORD} -r ${GITHUB_REPO} | tee -a /opt/github-issues-csv/issues.csv"]
