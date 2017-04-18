@@ -3,4 +3,4 @@ version: '2'
 services:
   gh2csv:
     build: .
-    command: python main.py -u ${GITHUB_USER} -p ${GITHUB_PASSWORD} -r ${GITHUB_REPO} --no-quick >issues.csv
+    command: ["python","main.py","-u","${GITHUB_USER}","-p","${GITHUB_PASSWORD}","-r","${GITHUB_REPO}","--no-quick",">issues.csv"]
