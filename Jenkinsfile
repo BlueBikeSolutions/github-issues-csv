@@ -15,7 +15,7 @@ node('master') {
 		sh 'docker-compose -H $DOCKER_HOST_HOST down --remove-orphans -v'
 		sh 'docker-compose -H $DOCKER_HOST_HOST -p lse up --build --force-recreate'
     stage 'Archiving issues.csv'
-		sh 'docker cp -H $DOCKER_HOST_HOST lse_gh2csv_1:/opt/github-issues-csv/issues.csv .'
+		sh 'docker -H $DOCKER_HOST_HOST cp lse_gh2csv_1:/opt/github-issues-csv/issues.csv .'
 		archiveArtifacts artifacts: 'issues.csv'
 		}
 }
