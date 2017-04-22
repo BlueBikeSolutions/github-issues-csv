@@ -23,6 +23,7 @@ node('master') {
 		// emailext attachmentsPattern: '**/issues.csv', body: 'Attached is the start-of-day issues file', subject: 'LSE development issues export', to: 'redcrosslse@bluebike.com.au'
 	stage 'Uploading Issues File to S3'
 		withAWS(credentials:'s3bbsarchiver') {
-    			s3Upload(file:'issues.csv', bucket:'bbsarchive', path:'/lse/issues.csv')
+    			awsIdentity()
+			s3Upload(file:'issues.csv', bucket:'bbsarchive', path:'/lse/issues.csv')
 		}
 }
