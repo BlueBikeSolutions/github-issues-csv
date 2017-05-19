@@ -23,7 +23,7 @@ EXCLUDE_FIELDS = (
 def get_csv_writer(issue):
     fieldnames = sorted([
         name for name in issue.raw_data.keys()
-        if name not in EXCLUDE_FIELDS and not exclude_field(name)
+        if name not in EXCLUDE_FIELDS # and not exclude_field(name)
     ])
     return csv.DictWriter(
         sys.stdout,
