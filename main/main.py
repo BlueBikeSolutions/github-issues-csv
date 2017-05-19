@@ -80,6 +80,7 @@ def main(user, password, repo, quick):
         data['closed_by'] = (data.pop('closed_by', {}) or {}).get('login', None)
         data['user'] = (data.pop('user', {}) or {}).get('login', None)
         data['assignee'] = (data.pop('assignee', {}) or {}).get('login', None)
+        data['pull_request'] = (data.pop('pull_request', {}) or {}).get('html_url', None)
         csv_writer.writerow(data)
         sys.stdout.flush()
 
