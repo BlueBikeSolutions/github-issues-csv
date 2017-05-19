@@ -16,8 +16,8 @@ EXCLUDE_FIELDS = (
 )
 
 
-def exclude_field(name):
-    return name.endswith('_url')
+#def exclude_field(name):
+#    return name.endswith('_url')
 
 
 def get_csv_writer(issue):
