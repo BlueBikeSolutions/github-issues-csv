@@ -13,9 +13,9 @@ node('master') {
 			sh 'sed -i "s/GITHUB_PASSWORD=.*/GITHUB_PASSWORD=${ghpass}/" .env'
 			sh 'sed -i "s#GITHUB_REPO=.*#GITHUB_REPO=${ghrepo}#g" .env'
 			sh 'cat .env'
-			sh 'docker-compose down --remove-orphans -v'
-			sh 'docker-compose -p master up --build --force-recreate'
-			sh 'docker cp master_gh2csv_1:/opt/github-issues-csv/issues.csv .'
+			sh 'docker-compose -p githubissuescsv down --remove-orphans -v'
+			sh 'docker-compose -p githubissuescsv up --build --force-recreate'
+			sh 'docker cp githubissuescsv_gh2csv_1:/opt/github-issues-csv/issues.csv .'
 		}
 	stage 'Archiving issues.csv'
 		archiveArtifacts artifacts: 'issues.csv'
