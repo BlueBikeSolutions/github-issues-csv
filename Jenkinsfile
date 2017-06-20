@@ -15,8 +15,8 @@ node('master') {
         sed -i "s#GITHUB_REPO=.*#GITHUB_REPO=${ghrepo}#g" .env
         cat .env
         pwd; ls -la
-        docker-compose -p githubissuescsv down --remove-orphans -v
-        docker-compose -p githubissuescsv up --build --force-recreate
+        docker-compose -f $(pwd)/docker-compose.yml -p githubissuescsv down --remove-orphans -v
+        docker-compose -f $(pwd)/docker-compose.yml -p githubissuescsv up --build --force-recreate
         docker cp githubissuescsv_gh2csv_1:/opt/github-issues-csv/issues.csv .
       '''
 		}
