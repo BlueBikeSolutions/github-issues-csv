@@ -8,14 +8,16 @@ node('master') {
 		echo "\u2600 workspace=${workspace}"
     	stage 'Running Issues Extractor Script'
 		withCredentials([usernamePassword(credentialsId: 'ghsignin', passwordVariable: 'ghpass', usernameVariable: 'ghuser')]) {
-			sh 'cp .env.example .env'
-			sh 'sed -i "s/GITHUB_USER=.*/GITHUB_USER=${ghuser}/" .env'
-			sh 'sed -i "s/GITHUB_PASSWORD=.*/GITHUB_PASSWORD=${ghpass}/" .env'
-			sh 'sed -i "s#GITHUB_REPO=.*#GITHUB_REPO=${ghrepo}#g" .env'
-			sh 'cat .env'
-			sh 'docker-compose -p githubissuescsv down --remove-orphans -v'
-			sh 'docker-compose -p githubissuescsv up --build --force-recreate'
-			sh 'docker cp githubissuescsv_gh2csv_1:/opt/github-issues-csv/issues.csv .'
+			sh '''
+        cp .env.example .env
+        sed -i "s/GITHUB_USER=.*/GITHUB_USER=${ghuser}/" .env
+        sed -i "s/GITHUB_PASSWORD=.*/GITHUB_PASSWORD=${ghpass}/" .env
+        sed -i "s#GITHUB_REPO=.*#GITHUB_REPO=${ghrepo}#g" .env
+        cat .env
+        docker-compose -p githubissuescsv down --remove-orphans -v
+        docker-compose -p githubissuescsv up --build --force-recreate
+        docker cp githubissuescsv_gh2csv_1:/opt/github-issues-csv/issues.csv .
+      '''
 		}
 	stage 'Archiving issues.csv'
 		archiveArtifacts artifacts: 'issues.csv'
