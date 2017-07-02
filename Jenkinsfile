@@ -1,6 +1,5 @@
 node('master') {
   ansiColor('xterm') {
-    properties([pipelineTriggers([cron('H 22 * * *')])])
     stage 'Cloning Repo'
       git credentialsId: 'ghsignin', url: 'https://github.com/BlueBikeSolutions/github-issues-csv'
       checkout scm
